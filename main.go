@@ -3,44 +3,15 @@ package main
 import (
     "log"
     "net/http"
-    "os"
-    "time"
 )
 
-type application struct {
-    auth struct {
-        username string
-        password string
-    }
-}
-
 func main() {
-    app := new(application)
 
-    app.auth.username = os.Getenv("AUTH_USERNAME")
-    app.auth.password = os.Getenv("AUTH_PASSWORD")
+    // public views
+    http.HandleFunc("/", HandleIndex)
 
-    if app.auth.username == "" {
-        log.Fatal("basic auth username must be provided")
-    }
+    // private views
+    http.HandleFunc("/json", GetOnly(basicAuth(HandleJSON)))
 
-    if app.auth.password == "" {
-        log.Fatal("basic auth password must be provided")
-    }
-
-    mux := http.NewServeMux()
-    mux.HandleFunc("/secure", app.basicAuth(app.protectedHandler))
-
-    srv := &http.Server{
-        Addr:         ":4000",
-        Handler:      mux,
-        IdleTimeout:  time.Minute,
-        ReadTimeout:  10 * time.Second,
-        WriteTimeout: 30 * time.Second,
-    }
-
-    log.Printf("starting server on %s", srv.Addr)
-    err := srv.ListenAndServeTLS("./localhost.pem", "./localhost-key.pem")
-    log.Fatal(err)
+    log.Fatal(http.ListenAndServe(":9900", nil))
 }
-
