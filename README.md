@@ -1,16 +1,8 @@
 # BasicAuthentication
 A simple basic authentication api with HTTPS
 
-# Create security certificates
-mkcert localhost
-
-# Setup 
-1. Clone Repo
-2. Get libraries go mod init hubuc.com/basic-auth-example
-3. Run  ( using temporary username and password ) AUTH_USERNAME=test AUTH_PASSWORD=FQfKWRCcGjZqz6g go run .
-4. Test on the browser https://localhost:4000/secure
-5. Should return the UserID = 1234456
 
 
 
 
+<img width="1676" alt="Screenshot 2022-02-25 at 17 24 46" src="https://user-images.githubusercontent.com/100418451/155731542-c58bea86-63e5-48b3-8005-5e60a54ec1a8.png">
