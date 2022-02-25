@@ -1,6 +1,12 @@
 # BasicAuthentication
 A simple basic authentication api with HTTPS
 
+# How to run
+1. chmod a+x test.sh
+2. ./test.sh
+
+
+
 
 
 
