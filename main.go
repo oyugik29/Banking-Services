@@ -6,7 +6,12 @@ import (
 )
 
 func main() {
+handleRequests()
 
+    log.Fatal(http.ListenAndServe(":9900", nil))
+}
+
+func handleRequests(){
     // public views
     http.HandleFunc("/", HandleIndex)
 
@@ -19,7 +24,7 @@ func main() {
     http.HandleFunc("/getCardDetails", PostOnly(basicAuth(HandleGetCardDetails)))
     http.HandleFunc("/block", PostOnly(basicAuth(HandleBlock)))
     http.HandleFunc("/unblock", PostOnly(basicAuth(HandleUnblock)))
+    http.HandleFunc("/getCards", GetOnly(basicAuth(HandleGetCards)))
 
 
-    log.Fatal(http.ListenAndServe(":9900", nil))
 }
