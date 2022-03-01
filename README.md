@@ -1,4 +1,4 @@
-# BasicAuthentication
+# Bank Services
 A simple basic authentication api with HTTPS
 
 # Run tests
